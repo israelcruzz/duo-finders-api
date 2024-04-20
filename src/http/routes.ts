@@ -3,29 +3,20 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { string, z } from "zod";
 
 export default async function AppRoutes(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().post("/auth", () => {});
-
-  app.withTypeProvider<ZodTypeProvider>().get("/user/ads", () => {});
-
-  app
-    .withTypeProvider<ZodTypeProvider>()
-    .delete("/user/delete/:adId", () => {});
-
-  app.withTypeProvider<ZodTypeProvider>().post("/ad", () => {});
-
-  app.withTypeProvider<ZodTypeProvider>().get("/ad/:gameId", () => {});
-
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/ad/recents",
+  app.withTypeProvider<ZodTypeProvider>().post(
+    "/auth",
     {
       schema: {
-        body: {
-          date: z.date(),
-        },
+        body: z.object({
+          name: z.string(),
+          avatar: z.string(),
+          banner: z.string(),
+          discord: z.string(),
+        }),
         response: {
-          201: z.array(z.object({
-            
-          })),
+          201: z.object({
+            token: z.string(),
+          }),
           404: z.object({
             message: z.string(),
           }),
@@ -36,10 +27,155 @@ export default async function AppRoutes(app: FastifyInstance) {
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
-    "/discord/adId",
+    "/user/ads",
     {
       schema: {
+        response: {
+          201: z.array(
+            z.object({
+              id: z.string().uuid(),
+              name: z.string(),
+              yearPlaying: z.number(),
+              discord: z.string(),
+              weekDays: z.string(),
+              hoursStart: z.number(),
+              hoursEnd: z.number(),
+              useVoiceChannel: z.boolean(),
+              createdAt: z.date(),
+            })
+          ),
+          404: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    () => {}
+  );
+
+  app.withTypeProvider<ZodTypeProvider>().delete(
+    "/user/delete/:adId",
+    {
+      schema: {
+        params: {
+          adId: z.string().uuid(),
+        },
+        response: {
+          201: z.object({
+            message: z.string(),
+          }),
+          404: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    () => {}
+  );
+
+  app.withTypeProvider<ZodTypeProvider>().post(
+    "/ad",
+    {
+      schema: {
+        body: z.object({
+          id: z.string().uuid(),
+          name: z.string(),
+          yearPlaying: z.number(),
+          discord: z.string(),
+          weekDays: z.string(),
+          hoursStart: z.number(),
+          hoursEnd: z.number(),
+          useVoiceChannel: z.boolean(),
+          createdAt: z.date(),
+        }),
+        response: {
+          201: z.object({
+            message: z.string(),
+          }),
+          404: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    () => {}
+  );
+
+  app.withTypeProvider<ZodTypeProvider>().get(
+    "/ads/:gameId",
+    {
+      schema: {
+        params: z.object({
+          gameId: z.string().uuid(),
+        }),
         querystring: z.object({
+          page: z.coerce.number(),
+        }),
+        response: {
+          201: z.array(
+            z.object({
+              id: z.string().uuid(),
+              name: z.string(),
+              yearPlaying: z.number(),
+              discord: z.string(),
+              weekDays: z.string(),
+              hoursStart: z.number(),
+              hoursEnd: z.number(),
+              useVoiceChannel: z.boolean(),
+              createdAt: z.date(),
+            })
+          ),
+          404: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    () => {}
+  );
+
+  app.withTypeProvider<ZodTypeProvider>().get(
+    "/ad/recents",
+    {
+      schema: {
+        body: {
+          date: z.date(),
+        },
+        response: {
+          201: z.array(
+            z.object({
+              id: z.string().uuid(),
+              name: z.string(),
+              yearPlaying: z.number(),
+              discord: z.string(),
+              weekDays: z.string(),
+              hoursStart: z.number(),
+              hoursEnd: z.number(),
+              useVoiceChannel: z.boolean(),
+              createdAt: z.date(),
+              game: z.object({
+                id: z.string().uuid(),
+                name: z.string(),
+                image: z.string(),
+                description: z.string(),
+                category: z.string(),
+              }),
+            })
+          ),
+          404: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    () => {}
+  );
+
+  app.withTypeProvider<ZodTypeProvider>().get(
+    "/discord/:adId",
+    {
+      schema: {
+        params: z.object({
           adId: string().uuid(),
         }),
         response: {
@@ -70,6 +206,7 @@ export default async function AppRoutes(app: FastifyInstance) {
               name: z.string(),
               image: z.string(),
               description: z.string(),
+              category: z.string(),
             })
           ),
           404: z.object({
@@ -107,7 +244,7 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/game/:categoryId",
     {
       schema: {
-        querystring: z.object({
+        params: z.object({
           categoryId: z.string().uuid(),
         }),
         response: {
