@@ -19,7 +19,7 @@ model User {
 }
 
 model Ad {
-  id              String  @id @default(uuid())
+  id              String   @id @default(uuid())
   name            String
   yearPlaying     Int
   discord         String
@@ -27,6 +27,7 @@ model Ad {
   hoursStart      Int
   hoursEnd        Int
   useVoiceChannel Boolean
+  createdAt       DateTime @default(now())
   userId          String
   gameId          String
 
