@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { string, z } from "zod";
+import { CategoryController } from "./controllers/category-controller";
 
 export default async function AppRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -282,6 +283,6 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    () => {}
+    CategoryController
   );
 }

@@ -7,7 +7,7 @@ import {
   validatorCompiler,
 } from "fastify-type-provider-zod";
 
-const app = fastify();
+export const app = fastify();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
