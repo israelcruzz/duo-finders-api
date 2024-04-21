@@ -1,5 +1,5 @@
 interface ICategory {
-    id: string
+    id?: string
     name: string
     games?: IGame[]
 }

@@ -7,7 +7,9 @@ class GamesInMemoryRepositorie implements GamesRepositoryInterface {
     let games;
 
     if (query) {
-      games = this.games.filter((game) => game.name.includes(query));
+      games = this.games.filter((game) =>
+        game.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+      );
 
       const gamesSliced = games.slice((page - 1) * 20, page * 20);
 
