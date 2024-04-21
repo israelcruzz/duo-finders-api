@@ -20,23 +20,23 @@ class UserPrismaRepositorie implements UserRepositoryInterface {
     return user;
   }
 
-  public async deleteUserAd(adId: string): Promise<void> {
-    await prisma.ad.delete({
-      where: {
-        id: adId,
-      },
-    });
-  }
+//   public async deleteUserAd(adId: string): Promise<void> {
+//     await prisma.ad.delete({
+//       where: {
+//         id: adId,
+//       },
+//     });
+//   }
 
-  public async findManyUserAds(userId: string): Promise<IAd[]> {
-    const userAds = await prisma.ad.findMany({
-      where: {
-        userId,
-      },
-    });
+//   public async findManyUserAds(userId: string): Promise<IAd[]> {
+//     const userAds = await prisma.ad.findMany({
+//       where: {
+//         userId,
+//       },
+//     });
 
-    return userAds;
-  }
+//     return userAds;
+//   }
 }
 
 export default new UserPrismaRepositorie();
