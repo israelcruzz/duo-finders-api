@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
 import adInMemoryRepositorie from "../../../repositories/ad/in-memory/ad-in-memory-repositorie";
 import { GetRecentAdsUseCase } from "../get-recent-ads-use-case";
 
-describe("Get User Ads Use Case", () => {
+describe("Get Recent Ads Use Case", () => {
   beforeAll(() => {
     vi.useFakeTimers()
 
