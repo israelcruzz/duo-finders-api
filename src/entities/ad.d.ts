@@ -8,6 +8,6 @@ interface IAd {
     hoursEnd: number
     useVoiceChannel: boolean
     createdAt?: Date
-    userId?: string
-    gameId?: string
+    userId: string
+    gameId: string
 }

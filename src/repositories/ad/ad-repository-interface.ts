@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 export interface AdRepositoryInterface {
   create({
     name,
@@ -7,10 +9,12 @@ export interface AdRepositoryInterface {
     hoursEnd,
     discord,
     useVoiceChannel,
-  }: IAd): Promise<IAd>;
-  findManyGameAds(gameId: string, page: number): Promise<IAd>;
-  findRecentsAds(date: Date): Promise<IAd>;
-  showDiscordAd(adId: string): Promise<{ discordName: string }>;
+    gameId,
+    userId
+  }: Prisma.AdWhereInput): Promise<IAd>;
+  findManyGameAds(gameId: string, page: number): Promise<IAd[]>;
+  findRecentsAds(date: Date): Promise<IAd[]>;
+  showDiscordAd(adId: string): Promise<string | null | undefined>;
   findManyUserAds(userId: string): Promise<IAd[]>
   deleteUserAd(adId: string): Promise<void>
 }

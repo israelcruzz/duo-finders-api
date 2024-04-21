@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { CreateUserUseCase } from "./create-user-controller";
-import userInMemoryRepositorie from "../../repositories/user/in-memory/user-in-memory-repositorie";
+import { CreateUserUseCase } from "../create-user-controller";
+import userInMemoryRepositorie from "../../../repositories/user/in-memory/user-in-memory-repositorie";
 
 
 describe("Create User Use Case", () => {
