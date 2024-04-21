@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import gamesInMemoryRepositorie from "../../../repositories/games/in-memory/games-in-memory-repositorie";
-import { FindManyGamesUseCase } from '../find-many-games-use-case'
+import { FindManyMostGamesUseCase } from '../find-many-most-games-ads-use-case'
 
-describe("Find Many Games Use Case", () => {
+describe("Find Many Most Games Use Case", () => {
   beforeAll(() => {
     gamesInMemoryRepositorie.games.push({
       name: "game-test",
@@ -35,23 +35,13 @@ describe("Find Many Games Use Case", () => {
     gamesInMemoryRepositorie.games = [];
   });
 
-  it("should be able to listing games", async () => {
-    const findManyGames = new FindManyGamesUseCase(
+  it("should be able to listing most games", async () => {
+    const findManyGames = new FindManyMostGamesUseCase(
         gamesInMemoryRepositorie
     );
 
-    const categories = await findManyGames.execute({ page: 1, query: 't' });
+    const mostGames = await findManyGames.execute();
 
-    expect(categories).toHaveLength(1);
-  });
-
-  it("should not be able to listing games", async () => {
-    const findManyGames = new FindManyGamesUseCase(
-        gamesInMemoryRepositorie
-    );
-
-    const categories = await findManyGames.execute({ page: 1, query: 'o' });
-
-    expect(categories).toHaveLength(0);
+    expect(mostGames).toHaveLength(1);
   });
 });
