@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import gamesInMemoryRepositorie from "../../repositories/games/in-memory/games-in-memory-repositorie";
-import { FindManyCategoriesUseCase } from './find-many-games-use-case'
+import gamesInMemoryRepositorie from "../../../repositories/games/in-memory/games-in-memory-repositorie";
+import { FindManyGamesUseCase } from '../find-many-games-use-case'
 
 describe("Category Use Case", () => {
   beforeAll(() => {
@@ -36,7 +36,7 @@ describe("Category Use Case", () => {
   });
 
   it("should be able to listing games", async () => {
-    const findManyGames = new FindManyCategoriesUseCase(
+    const findManyGames = new FindManyGamesUseCase(
         gamesInMemoryRepositorie
     );
 
@@ -46,7 +46,7 @@ describe("Category Use Case", () => {
   });
 
   it("should not be able to listing games", async () => {
-    const findManyGames = new FindManyCategoriesUseCase(
+    const findManyGames = new FindManyGamesUseCase(
         gamesInMemoryRepositorie
     );
 

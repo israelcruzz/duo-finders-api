@@ -1,20 +1,20 @@
 import { GamesRepositoryInterface } from "../../repositories/games/games-repository-interface";
 
-interface FindManyCategoriesUseCaseRequest {
+interface FindManyGamesUseCaseRequest {
     query: string
     page: number
 }
 
-export class FindManyCategoriesUseCase {
+export class FindManyGamesUseCase {
   constructor(private gameRepositorie: GamesRepositoryInterface) {
     this.gameRepositorie = gameRepositorie;
   }
 
-  public async execute({ page, query }: FindManyCategoriesUseCaseRequest) {
-    const categoriesRepository = this.gameRepositorie
+  public async execute({ page, query }: FindManyGamesUseCaseRequest) {
+    const gamesRepository = this.gameRepositorie
 
-    const categories = await categoriesRepository.findManyGames(query, page)
+    const games = await gamesRepository.findManyGames(query, page)
 
-    return categories
+    return games
   }
 }
