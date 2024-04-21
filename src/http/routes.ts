@@ -1,17 +1,17 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { string, z } from "zod";
-import { CategoryController } from "./controllers/category-controller";
-import { ListGamesCategory } from "./controllers/list-games-category";
-import { ListGamesMostAds } from "./controllers/list-games-most-ads";
-import { ListGames } from "./controllers/list-games";
-import { ShowDiscordAd } from "./controllers/show-discord-ad";
-import { ListRecentAds } from "./controllers/list-recent-ads";
-import { ListAdsGame } from "./controllers/list-ads-game";
-import { CreateAd } from "./controllers/create-ad";
-import { DeleteAd } from "./controllers/delete-ad";
-import { UserAds } from "./controllers/user-ads";
-import { Auth } from "./controllers/auth";
+import { CategoryController } from "./controllers/category/category-controller";
+import { ListGamesCategory } from "./controllers/games/list-games-category";
+import { ListGamesMostAds } from "./controllers/games/list-games-most-ads";
+import { ListGames } from "./controllers/games/list-games";
+import { ShowDiscordAd } from "./controllers/ad/show-discord-ad";
+import { ListRecentAds } from "./controllers/ad/list-recent-ads";
+import { ListAdsGame } from "./controllers/ad/list-ads-game";
+import { CreateAd } from "./controllers/ad/create-ad";
+import { UserDeleteAd } from "./controllers/user/user-delete-ad";
+import { UserAds } from "./controllers/user/user-ads";
+import { Auth } from "./controllers/user/auth";
 
 export default async function AppRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -81,7 +81,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    DeleteAd
+    UserDeleteAd
   );
 
   app.withTypeProvider<ZodTypeProvider>().post(
