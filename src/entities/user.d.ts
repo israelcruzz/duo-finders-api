@@ -1,5 +1,5 @@
 interface IUser {
-    id: string
+    id?: string
     name: string
     avatar: string
     banner: string
