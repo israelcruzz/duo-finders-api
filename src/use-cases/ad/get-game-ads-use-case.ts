@@ -11,8 +11,8 @@ export class GetGameAdsUseCase {
   }
 
   public async execute({ gameId, page }: GetGameAdsUseCaseRequest) {
-    const recentAds = await this.adRepositorie.findManyGameAds(gameId, page)
+    const gameAds = await this.adRepositorie.findManyGameAds(gameId, page)
 
-    return recentAds
+    return gameAds
   }
 }
