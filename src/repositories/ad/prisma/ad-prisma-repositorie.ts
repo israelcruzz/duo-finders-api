@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { prisma } from "../../../lib/prisma";
 import { AdRepositoryInterface } from "../ad-repository-interface";
 
@@ -61,9 +62,15 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
   }
 
   public async findRecentsAds(date: Date): Promise<IAd[]> {
+    const startDate = dayjs(date).startOf("date");
+    const endDate = dayjs(date).endOf("date");
+
     const recentAds = await prisma.ad.findMany({
       where: {
-        createdAt: date,
+        createdAt: {
+            gte: startDate.toDate(),
+            lte: endDate.toDate()
+        }
       },
     });
 

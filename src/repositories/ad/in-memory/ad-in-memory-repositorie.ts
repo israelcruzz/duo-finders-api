@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { AdRepositoryInterface } from "../ad-repository-interface";
 
 class AdInMemoryRepository implements AdRepositoryInterface {
@@ -54,7 +55,16 @@ class AdInMemoryRepository implements AdRepositoryInterface {
   }
 
   public async findRecentsAds(date: Date): Promise<IAd[]> {
-    const recentAds = this.ads.filter((ad) => ad.createdAt === date);
+    const startDate = dayjs(date).startOf("date")
+    const endDate = dayjs(date).endOf("date")
+
+    const recentAds = this.ads.filter((ad) => {
+        const createdAt = dayjs(ad.createdAt)
+
+        const isSameAdDate = createdAt.isAfter(startDate) && createdAt.isBefore(endDate)
+
+        return isSameAdDate
+    });
 
     return recentAds;
   }
