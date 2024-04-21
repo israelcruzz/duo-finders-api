@@ -1,5 +1,5 @@
 interface IAd {
-    id: string
+    id?: string
     name: string
     yearPlaying: number
     discord: string
@@ -7,7 +7,7 @@ interface IAd {
     hoursStart: number
     hoursEnd: number
     useVoiceChannel: boolean
-    createdAt: Date
+    createdAt?: Date
     userId?: string
     gameId?: string
 }

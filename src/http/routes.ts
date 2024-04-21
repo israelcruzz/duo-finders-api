@@ -8,7 +8,7 @@ import { ListGamesController } from "./controllers/games/list-games-controller";
 import { ShowDiscordAdController } from "./controllers/ad/show-discord-ad-controller";
 import { ListRecentAdsController } from "./controllers/ad/list-recent-ads-controller";
 import { ListAdsGameController } from "./controllers/ad/list-ads-game-controller";
-import { CreateAdController } from "./controllers/ad/create-ad-Controller";
+import { CreateAdController } from "./controllers/ad/create-ad-controller";
 import { UserDeleteAdController } from "./controllers/user/user-delete-ad-controller";
 import { UserAdsController } from "./controllers/user/user-ads-controller";
 import { AuthController } from "./controllers/user/auth-controller";
