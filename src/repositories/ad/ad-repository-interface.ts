@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 
 export interface AdRepositoryInterface {
   create({
@@ -11,7 +10,7 @@ export interface AdRepositoryInterface {
     useVoiceChannel,
     gameId,
     userId
-  }: Prisma.AdWhereInput): Promise<IAd>;
+  }: IAd): Promise<IAd>;
   findManyGameAds(gameId: string, page: number): Promise<IAd[]>;
   findRecentsAds(date: Date): Promise<IAd[]>;
   showDiscordAd(adId: string): Promise<string | null | undefined>;
