@@ -2,16 +2,16 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { string, z } from "zod";
 import { CategoryController } from "./controllers/category/category-controller";
-import { ListGamesCategory } from "./controllers/games/list-games-category";
-import { ListGamesMostAds } from "./controllers/games/list-games-most-ads";
-import { ListGames } from "./controllers/games/list-games";
-import { ShowDiscordAd } from "./controllers/ad/show-discord-ad";
-import { ListRecentAds } from "./controllers/ad/list-recent-ads";
-import { ListAdsGame } from "./controllers/ad/list-ads-game";
-import { CreateAd } from "./controllers/ad/create-ad";
-import { UserDeleteAd } from "./controllers/user/user-delete-ad";
-import { UserAds } from "./controllers/user/user-ads";
-import { Auth } from "./controllers/user/auth";
+import { ListGamesCategoryController } from "./controllers/games/list-games-category-controller";
+import { ListGamesMostAdsController } from "./controllers/games/list-games-most-ads-controller";
+import { ListGamesController } from "./controllers/games/list-games-controller";
+import { ShowDiscordAdController } from "./controllers/ad/show-discord-ad-controller";
+import { ListRecentAdsController } from "./controllers/ad/list-recent-ads-controller";
+import { ListAdsGameController } from "./controllers/ad/list-ads-game-controller";
+import { CreateAdController } from "./controllers/ad/create-ad-Controller";
+import { UserDeleteAdController } from "./controllers/user/user-delete-ad-controller";
+import { UserAdsController } from "./controllers/user/user-ads-controller";
+import { AuthController } from "./controllers/user/auth-controller";
 
 export default async function AppRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -34,7 +34,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    Auth
+    AuthController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -61,7 +61,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    UserAds
+    UserAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().delete(
@@ -81,7 +81,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    UserDeleteAd
+    UserDeleteAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -109,7 +109,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    CreateAd
+    CreateAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -142,7 +142,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ListAdsGame
+    ListAdsGameController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -179,7 +179,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ListRecentAds
+    ListRecentAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -199,7 +199,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ShowDiscordAd
+    ShowDiscordAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -226,7 +226,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ListGames
+    ListGamesController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -248,7 +248,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ListGamesMostAds
+    ListGamesMostAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -273,7 +273,7 @@ export default async function AppRoutes(app: FastifyInstance) {
         },
       },
     },
-    ListGamesCategory
+    ListGamesCategoryController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
