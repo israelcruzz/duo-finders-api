@@ -11,4 +11,6 @@ export interface AdRepositoryInterface {
   findManyGameAds(gameId: string, page: number): Promise<IAd>;
   findRecentsAds(date: Date): Promise<IAd>;
   showDiscordAd(adId: string): Promise<{ discordName: string }>;
+  findManyUserAds(userId: string): Promise<IAd[]>
+  deleteUserAd(adId: string): Promise<void>
 }
