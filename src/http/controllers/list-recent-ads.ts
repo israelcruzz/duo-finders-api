@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export async function RecentAds(request: FastifyRequest, reply: FastifyReply) {
-    
+export async function ListRecentAds(request: FastifyRequest, reply: FastifyReply) {
+
 }
