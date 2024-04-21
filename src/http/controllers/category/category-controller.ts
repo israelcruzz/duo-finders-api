@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { FindManyCategoriesUseCase } from "../../../use-cases/category/find-many-categories";
+import { FindManyCategoriesUseCase } from "../../../use-cases/category/find-many-categories-use-case";
 import categoryInMemoryRepositorie from "../../../repositories/category/in-memory/category-in-memory-repositorie";
 
 export async function CategoryController(

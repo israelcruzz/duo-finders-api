@@ -36,7 +36,7 @@ class GamesInMemoryRepositorie implements GamesRepositoryInterface {
     });
 
     const sortedGames = gamesWithCount.sort(
-      (a, b) => (b.adCount || 1) - (a.adCount || 1)
+      (a, b) => (b.adCount || 1) - (a.adCount || 2)
     );
 
     const maxAdsCount = sortedGames[0].adCount;

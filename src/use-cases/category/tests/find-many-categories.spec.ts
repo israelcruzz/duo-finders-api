@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { FindManyCategoriesUseCase } from "../find-many-categories";
+import { FindManyCategoriesUseCase } from "../find-many-categories-use-case";
 import categoryInMemoryRepositorie from "../../../repositories/category/in-memory/category-in-memory-repositorie";
 
 describe("Category Use Case", () => {
