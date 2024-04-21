@@ -1,3 +1,3 @@
 export interface CategoryRepositoryInterface {
-  index(): Promise<ICategory>;
+  index(): Promise<ICategory[]>;
 }
