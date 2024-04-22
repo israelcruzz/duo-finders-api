@@ -13,12 +13,19 @@ type CreateAdRequest = {
   Body: TypeOf<typeof createAdSchema.schema.body>;
 };
 
+interface jwtPayload {
+  sub: string
+  iat: number
+}
+
 export async function CreateAdController(
   request: FastifyRequest<CreateAdRequest>,
   reply: FastifyReply
 ) {
   try {
-    await request.jwtVerify();
+    const user = await request.jwtVerify() as jwtPayload
+
+    const userId = user.sub
 
     const {
       name,
@@ -29,7 +36,6 @@ export async function CreateAdController(
       weekDays,
       yearPlaying,
       gameId,
-      userId,
     } = request.body;
 
     const createAd = new CreateAdUseCase(

@@ -11,7 +11,7 @@ export const getDiscordFromAnAdSchema = {
       adId: z.string().uuid(),
     }),
     response: {
-      201: z.object({
+      200: z.object({
         discordName: z.string(),
       }),
       404: z.object({
