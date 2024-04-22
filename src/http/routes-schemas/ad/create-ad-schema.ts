@@ -8,7 +8,6 @@ export const createAdSchema = {
       authorization: z.string()
     }),
     body: z.object({
-      id: z.string().uuid(),
       name: z.string(),
       yearPlaying: z.number(),
       discord: z.string(),
@@ -16,14 +15,15 @@ export const createAdSchema = {
       hoursStart: z.number(),
       hoursEnd: z.number(),
       useVoiceChannel: z.boolean(),
-      createdAt: z.date(),
+      gameId: z.string(),
+      userId: z.string(),
     }),
     response: {
       201: z.object({
         message: z.string(),
       }),
       404: z.object({
-        message: z.string(),
+        error: z.string(),
       }),
     },
   },
