@@ -7,6 +7,16 @@ class CategoryPrismaRepositorie implements CategoryRepositoryInterface {
 
     return categories;
   }
+
+  public async findCategoryById(categoryId: string): Promise<ICategory | null> {
+    const category = await prisma.category.findUnique({
+      where: {
+        id: categoryId
+      }
+    })
+
+    return category
+  }
 }
 
 export default new CategoryPrismaRepositorie();

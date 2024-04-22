@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import adInMemoryRepositorie from "../../../repositories/ad/in-memory/ad-in-memory-repositorie";
 import { CreateAdUseCase } from "../create-ad-use-case";
 
