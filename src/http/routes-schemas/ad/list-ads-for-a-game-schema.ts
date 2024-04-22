@@ -11,10 +11,10 @@ export const listAdsForAGameSchema = {
       gameId: z.string().uuid(),
     }),
     querystring: z.object({
-      page: z.coerce.number(),
+      page: z.coerce.number().default(1),
     }),
     response: {
-      201: z.array(
+      200: z.array(
         z.object({
           id: z.string().uuid(),
           name: z.string(),
