@@ -1,13 +1,13 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { FindManyCategoriesUseCase } from "../../../use-cases/category/find-many-categories-use-case";
-import categoryInMemoryRepositorie from "../../../repositories/category/in-memory/category-in-memory-repositorie";
+import categoryPrismaRepositorie from "../../../repositories/category/prisma/category-prisma-repositorie";
 
 export async function CategoryController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   const findManyCategories = new FindManyCategoriesUseCase(
-    categoryInMemoryRepositorie
+    categoryPrismaRepositorie
   );
 
   try {
