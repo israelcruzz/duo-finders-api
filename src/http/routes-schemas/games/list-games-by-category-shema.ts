@@ -11,7 +11,7 @@ export const listGamesByCategogySchema = {
       categoryId: z.string().uuid(),
     }),
     response: {
-      201: z.array(
+      200: z.array(
         z.object({
           id: z.string(),
           name: z.string(),

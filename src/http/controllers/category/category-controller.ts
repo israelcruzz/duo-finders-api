@@ -6,6 +6,8 @@ export async function CategoryController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
+  await request.jwtVerify();
+
   const findManyCategories = new FindManyCategoriesUseCase(
     categoryPrismaRepositorie
   );
