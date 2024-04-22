@@ -1,4 +1,11 @@
 import { FastifyReply, FastifyRequest } from "fastify";
+import { TypeOf } from "zod";
+import { listGamesSchema } from "../../routes-schemas/games/list-games-schema";
 
-export async function ListAdsGameController(request: FastifyRequest, reply: FastifyReply) {
+type ListAdsGameRequest = {
+    Querystring: TypeOf<typeof listGamesSchema.schema.querystring>
+}
+
+export async function ListAdsGameController(request: FastifyRequest<ListAdsGameRequest>, reply: FastifyReply) {
+    request.query
 }

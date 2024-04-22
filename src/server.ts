@@ -14,24 +14,25 @@ export const app = fastify();
 
 app.register(fastifySwagger, {
   swagger: {
-    consumes: ["application/json"],
-    produces: ["application/json"],
+    consumes: ['application/json'],
+    produces: ['application/json'],
     info: {
-      title: "DuoFinders Api",
-      description: "API specifications for the DuoFinders application backend",
-      version: "1.0.0",
-    },
+      title: 'DuoFinders Api',
+      description: 'API specifications for the DuoFinders application backend',
+      version: '1.0.0'
+    }
   },
-  transform: jsonSchemaTransform,
-});
+  transform: jsonSchemaTransform
+})
 
 app.register(fastifySwaggerUi, {
-  routePrefix: "/docs",
-});
+  routePrefix: '/docs',
+})
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
+app.register(AppRoutes);
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply
@@ -41,8 +42,6 @@ app.setErrorHandler((error, _, reply) => {
 
   return reply.status(500).send("Internal Server Error");
 });
-
-app.register(AppRoutes);
 
 app
   .listen({ port: env.NODE_PORT, path: "0.0.0.0" })

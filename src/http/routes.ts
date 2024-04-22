@@ -12,309 +12,82 @@ import { CreateAdController } from "./controllers/ad/create-ad-controller";
 import { UserDeleteAdController } from "./controllers/user/user-delete-ad-controller";
 import { UserAdsController } from "./controllers/user/user-ads-controller";
 import { AuthController } from "./controllers/user/auth-controller";
+import { listCategorySchema } from "./routes-schemas/category/list-categories-schema";
+import { listGamesByCategogySchema } from "./routes-schemas/games/list-games-by-category-shema";
+import { listFamousGamesSchema } from "./routes-schemas/games/list-famous-games-schema";
+import { listGamesSchema } from "./routes-schemas/games/list-games-schema";
+import { getDiscordFromAnAdSchema } from "./routes-schemas/ad/get-discord-from-an-ad-schema";
+import { listAdsRecentsSchema } from "./routes-schemas/ad/list-ads-recents-schema";
+import { listAdsForAGameSchema } from "./routes-schemas/ad/list-ads-for-a-game-schema";
+import { createAdSchema } from "./routes-schemas/ad/create-ad-schema";
+import { deleteAUserAdSchema } from "./routes-schemas/user/delete-a-user-ad-schema";
+import { listAdsFromAUserSchema } from "./routes-schemas/user/list-ads-from-a-user-schema";
+import { createUserWithDataComingFromDiscordSchema } from "./routes-schemas/user/create-user-with-data-coming-from-discord-schema";
 
 export default async function AppRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     "/auth",
-    {
-      schema: {
-        summary: "Create user with data coming from discord",
-        tags: ["user"],
-        body: z.object({
-          name: z.string(),
-          avatar: z.string(),
-          banner: z.string(),
-          discord: z.string(),
-        }),
-        response: {
-          201: z.object({
-            token: z.string(),
-          }),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    createUserWithDataComingFromDiscordSchema,
     AuthController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/user/ads",
-    {
-      schema: {
-        summary: "List ads from a user",
-        tags: ["user"],
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string().uuid(),
-              name: z.string(),
-              yearPlaying: z.number(),
-              discord: z.string(),
-              weekDays: z.string(),
-              hoursStart: z.number(),
-              hoursEnd: z.number(),
-              useVoiceChannel: z.boolean(),
-              createdAt: z.date(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listAdsFromAUserSchema,
     UserAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().delete(
     "/user/delete/:adId",
-    {
-      schema: {
-        summary: "Delete a user ad",
-        tags: ["user"],
-        params: z.object({
-          adId: z.string().uuid(),
-        }),
-        response: {
-          201: z.object({
-            message: z.string(),
-          }),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    deleteAUserAdSchema,
     UserDeleteAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().post(
     "/ad",
-    {
-      schema: {
-        summary: "Create Ad",
-        tags: ["ad"],
-        body: z.object({
-          id: z.string().uuid(),
-          name: z.string(),
-          yearPlaying: z.number(),
-          discord: z.string(),
-          weekDays: z.string(),
-          hoursStart: z.number(),
-          hoursEnd: z.number(),
-          useVoiceChannel: z.boolean(),
-          createdAt: z.date(),
-        }),
-        response: {
-          201: z.object({
-            message: z.string(),
-          }),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    createAdSchema,
     CreateAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/ads/:gameId",
-    {
-      schema: {
-        summary: "List ads for a game",
-        tags: ["ad"],
-        params: z.object({
-          gameId: z.string().uuid(),
-        }),
-        querystring: z.object({
-          page: z.coerce.number(),
-        }),
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string().uuid(),
-              name: z.string(),
-              yearPlaying: z.number(),
-              discord: z.string(),
-              weekDays: z.string(),
-              hoursStart: z.number(),
-              hoursEnd: z.number(),
-              useVoiceChannel: z.boolean(),
-              createdAt: z.date(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listAdsForAGameSchema,
     ListAdsGameController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/ad/recents/:data",
-    {
-      schema: {
-        summary: "List ads recents",
-        tags: ["ad"],
-        params: z.object({
-          date: z.date(),
-        }),
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string().uuid(),
-              name: z.string(),
-              yearPlaying: z.number(),
-              discord: z.string(),
-              weekDays: z.string(),
-              hoursStart: z.number(),
-              hoursEnd: z.number(),
-              useVoiceChannel: z.boolean(),
-              createdAt: z.date(),
-              game: z.object({
-                id: z.string().uuid(),
-                name: z.string(),
-                image: z.string(),
-                description: z.string(),
-                category: z.string(),
-              }),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listAdsRecentsSchema,
     ListRecentAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/discord/:adId",
-    {
-      schema: {
-        summary: "Get discord from an ad",
-        tags: ["ad"],
-        params: z.object({
-          adId: string().uuid(),
-        }),
-        response: {
-          201: z.object({
-            discordName: z.string(),
-          }),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    getDiscordFromAnAdSchema,
     ShowDiscordAdController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/games",
-    {
-      schema: {
-        summary: "List Games",
-        tags: ["games"],
-        querystring: z.object({
-          query: z.coerce.string(),
-          page: z.coerce.number().default(1),
-        }),
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string(),
-              name: z.string(),
-              image: z.string(),
-              description: z.string(),
-              category: z.string(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listGamesSchema,
     ListGamesController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/famous/game",
-    {
-      schema: {
-        summary: "List Famous Games",
-        tags: ["games"],
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string(),
-              name: z.string(),
-              image: z.string(),
-              description: z.string(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listFamousGamesSchema,
     ListGamesMostAdsController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/game/:categoryId",
-    {
-      schema: {
-        summary: "List games by category",
-        tags: ["games"],
-        params: z.object({
-          categoryId: z.string().uuid(),
-        }),
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string(),
-              name: z.string(),
-              image: z.string(),
-              description: z.string(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listGamesByCategogySchema,
     ListGamesCategoryController
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
     "/category",
-    {
-      schema: {
-        summary: "List categories",
-        tags: ["category"],
-        response: {
-          201: z.array(
-            z.object({
-              id: z.string().uuid(),
-              name: z.string(),
-            })
-          ),
-          404: z.object({
-            message: z.string(),
-          }),
-        },
-      },
-    },
+    listCategorySchema,
     CategoryController
   );
 }
