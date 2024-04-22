@@ -44,7 +44,7 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
         description: game.description,
         categoryId: game.categoryId,
         countAds: game._count.ads,
-        ads: game.ads
+        ads: game.ads,
       };
     });
   }
@@ -57,6 +57,7 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
             ads: true,
           },
         },
+        category: true
       },
       orderBy: {
         ads: {
@@ -65,7 +66,16 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
       },
     });
 
-    return games;
+    return games.map((game) => {
+      return {
+        id: game.id,
+        name: game.name,
+        image: game.image,
+        description: game.description,
+        countAds: game._count.ads,
+        category: game.category.name
+      };
+    });
   }
 
   public async findGameById(gameId: string): Promise<IGame | null> {

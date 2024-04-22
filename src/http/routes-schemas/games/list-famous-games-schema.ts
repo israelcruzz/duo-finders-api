@@ -8,12 +8,14 @@ export const listFamousGamesSchema = {
       authorization: z.string()
     }),
     response: {
-      201: z.array(
+      200: z.array(
         z.object({
           id: z.string(),
           name: z.string(),
           image: z.string(),
           description: z.string(),
+          countAds: z.number(),
+          category: z.string()
         })
       ),
       404: z.object({
