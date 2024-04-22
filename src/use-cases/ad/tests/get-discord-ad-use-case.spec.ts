@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import adInMemoryRepositorie from "../../../repositories/ad/in-memory/ad-in-memory-repositorie";
 import { GetDiscordAdUseCase } from "../get-discord-ad-use-case";
+import { AdNotFound } from "../../../http/err/ad-not-found";
 
 describe("Get Discord Ad Use Case", () => {
   beforeAll(() => {
@@ -34,8 +35,8 @@ describe("Get Discord Ad Use Case", () => {
   it("should not be able to listing discord ad", async () => {
     const getDiscordAd = new GetDiscordAdUseCase(adInMemoryRepositorie);
 
-    const discordName = await getDiscordAd.execute({ adId: "not-exist-test" });
-
-    expect(discordName).toBeUndefined
+    await expect(() =>
+      getDiscordAd.execute({ adId: "not-exist-test" })
+    ).rejects.toBeInstanceOf(AdNotFound);
   });
 });

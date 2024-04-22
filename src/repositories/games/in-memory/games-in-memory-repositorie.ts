@@ -49,6 +49,16 @@ class GamesInMemoryRepositorie implements GamesRepositoryInterface {
 
     return gamesWithMostAds;
   }
+
+  public async findGameById(gameId: string): Promise<IGame | null> {
+    const game = this.games.find((game) => game.id === gameId)
+
+    if(game === undefined) {
+      return null
+    }
+
+    return game
+  }
 }
 
 export default new GamesInMemoryRepositorie();

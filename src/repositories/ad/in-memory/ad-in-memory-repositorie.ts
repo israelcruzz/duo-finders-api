@@ -55,15 +55,16 @@ class AdInMemoryRepository implements AdRepositoryInterface {
   }
 
   public async findRecentsAds(date: Date): Promise<IAd[]> {
-    const startDate = dayjs(date).startOf("date")
-    const endDate = dayjs(date).endOf("date")
+    const startDate = dayjs(date).startOf("date");
+    const endDate = dayjs(date).endOf("date");
 
     const recentAds = this.ads.filter((ad) => {
-        const createdAt = dayjs(ad.createdAt)
+      const createdAt = dayjs(ad.createdAt);
 
-        const isSameAdDate = createdAt.isAfter(startDate) && createdAt.isBefore(endDate)
+      const isSameAdDate =
+        createdAt.isAfter(startDate) && createdAt.isBefore(endDate);
 
-        return isSameAdDate
+      return isSameAdDate;
     });
 
     return recentAds;
@@ -75,6 +76,16 @@ class AdInMemoryRepository implements AdRepositoryInterface {
     const discordName = ad?.discord;
 
     return discordName;
+  }
+
+  public async findAdById(adId: string): Promise<IAd | null> {
+    const ad = this.ads.find((ad) => ad.id === adId);
+
+    if (ad === undefined) {
+      return null;
+    }
+
+    return ad;
   }
 }
 

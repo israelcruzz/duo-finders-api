@@ -57,6 +57,16 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
 
     return games;
   }
+
+  public async findGameById(gameId: string): Promise<IGame | null> {
+    const game = await prisma.game.findUnique({
+      where: {
+        id: gameId
+      }
+    })
+
+    return game
+  }
 }
 
 export default new GamesPrismaRepositorie();

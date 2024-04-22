@@ -1,7 +1,8 @@
+import { AdNotFound } from "../../http/err/ad-not-found";
 import { AdRepositoryInterface } from "../../repositories/ad/ad-repository-interface";
 
 interface GetDiscordAdUseCaseRequest {
-    adId: string
+  adId: string;
 }
 
 export class GetDiscordAdUseCase {
@@ -10,8 +11,14 @@ export class GetDiscordAdUseCase {
   }
 
   public async execute({ adId }: GetDiscordAdUseCaseRequest) {
-    const discordName = await this.adRepositorie.showDiscordAd(adId)
+    const existAd = await this.adRepositorie.findAdById(adId);
 
-    return discordName
+    if (existAd === null) {
+      throw new AdNotFound();
+    }
+
+    const discordName = await this.adRepositorie.showDiscordAd(adId);
+
+    return discordName;
   }
 }

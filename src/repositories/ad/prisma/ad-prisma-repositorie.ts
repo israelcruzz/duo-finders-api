@@ -68,9 +68,9 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
     const recentAds = await prisma.ad.findMany({
       where: {
         createdAt: {
-            gte: startDate.toDate(),
-            lte: endDate.toDate()
-        }
+          gte: startDate.toDate(),
+          lte: endDate.toDate(),
+        },
       },
     });
 
@@ -96,6 +96,16 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
         id: adId,
       },
     });
+  }
+
+  public async findAdById(adId: string): Promise<IAd | null> {
+    const ad = prisma.ad.findUnique({
+      where: {
+        id: adId,
+      },
+    });
+
+    return ad;
   }
 }
 
