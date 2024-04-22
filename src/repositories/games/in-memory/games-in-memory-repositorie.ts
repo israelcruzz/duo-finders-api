@@ -3,7 +3,10 @@ import { GamesRepositoryInterface } from "../games-repository-interface";
 class GamesInMemoryRepositorie implements GamesRepositoryInterface {
   public games: IGame[] = [];
 
-  public async findManyGames(query: string, page: number): Promise<IGame[]> {
+  public async findManyGames(
+    query: string | undefined,
+    page: number
+  ): Promise<IGame[]> {
     let games;
 
     if (query) {
@@ -51,13 +54,13 @@ class GamesInMemoryRepositorie implements GamesRepositoryInterface {
   }
 
   public async findGameById(gameId: string): Promise<IGame | null> {
-    const game = this.games.find((game) => game.id === gameId)
+    const game = this.games.find((game) => game.id === gameId);
 
-    if(game === undefined) {
-      return null
+    if (game === undefined) {
+      return null;
     }
 
-    return game
+    return game;
   }
 }
 

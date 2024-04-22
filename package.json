@@ -9,13 +9,16 @@
     "build": "tsup src --out-dir build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "npx vitest --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "@vitest/coverage-v8": "^1.5.0",
+    "@vitest/ui": "^1.5.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
