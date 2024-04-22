@@ -55,7 +55,7 @@ export default async function AppRoutes(app: FastifyInstance) {
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
-    "/ad/recents/:data",
+    "/ad/recents",
     listAdsRecentsSchema,
     ListRecentAdsController
   );

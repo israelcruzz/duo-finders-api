@@ -72,6 +72,9 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
           lte: endDate.toDate(),
         },
       },
+      include: {
+        game: true
+      }
     });
 
     return recentAds;

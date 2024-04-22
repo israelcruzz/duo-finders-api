@@ -5,13 +5,10 @@ export const listAdsRecentsSchema = {
     summary: "List ads recents",
     tags: ["ad"],
     headers: z.object({
-      authorization: z.string()
-    }),
-    params: z.object({
-      date: z.date(),
+      authorization: z.string(),
     }),
     response: {
-      201: z.array(
+      200: z.array(
         z.object({
           id: z.string().uuid(),
           name: z.string(),
@@ -22,12 +19,14 @@ export const listAdsRecentsSchema = {
           hoursEnd: z.number(),
           useVoiceChannel: z.boolean(),
           createdAt: z.date(),
+          userId: z.string(),
+          gameId: z.string(),
           game: z.object({
             id: z.string().uuid(),
             name: z.string(),
             image: z.string(),
             description: z.string(),
-            category: z.string(),
+            categoryId: z.string(),
           }),
         })
       ),

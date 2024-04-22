@@ -19,7 +19,6 @@ export const listAdsForAGameSchema = {
           id: z.string().uuid(),
           name: z.string(),
           yearPlaying: z.number(),
-          discord: z.string(),
           weekDays: z.string(),
           hoursStart: z.number(),
           hoursEnd: z.number(),
