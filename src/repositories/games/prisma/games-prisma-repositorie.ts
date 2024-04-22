@@ -36,7 +36,17 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
       take: 20,
     });
 
-    return games;
+    return games.map((game) => {
+      return {
+        id: game.id,
+        name: game.name,
+        image: game.image,
+        description: game.description,
+        categoryId: game.categoryId,
+        countAds: game._count.ads,
+        ads: game.ads
+      };
+    });
   }
 
   public async findManyMostGamesAds(): Promise<IGame[]> {
@@ -61,11 +71,11 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
   public async findGameById(gameId: string): Promise<IGame | null> {
     const game = await prisma.game.findUnique({
       where: {
-        id: gameId
-      }
-    })
+        id: gameId,
+      },
+    });
 
-    return game
+    return game;
   }
 }
 

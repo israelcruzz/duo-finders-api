@@ -1,8 +1,8 @@
 import { GamesRepositoryInterface } from "../../repositories/games/games-repository-interface";
 
 interface FindManyGamesUseCaseRequest {
-    query: string
-    page: number
+  query: string;
+  page: number;
 }
 
 export class FindManyGamesUseCase {
@@ -10,11 +10,11 @@ export class FindManyGamesUseCase {
     this.gameRepositorie = gameRepositorie;
   }
 
-  public async execute({ page, query }: FindManyGamesUseCaseRequest) {
-    const gamesRepository = this.gameRepositorie
+  public async execute({ query, page }: FindManyGamesUseCaseRequest) {
+    console.log(query);
 
-    const games = await gamesRepository.findManyGames(query, page)
+    const games = await this.gameRepositorie.findManyGames(query, page);
 
-    return games
+    return games;
   }
 }
