@@ -1,5 +1,6 @@
 import { CategoryRepositoryInterface } from "../../repositories/category/category-repository-interface";
 import { GamesRepositoryInterface } from "../../repositories/games/games-repository-interface";
+import { CategoryDoesNotExists } from "../../http/err/category-does-not-exists";
 
 interface FindGamePerCategoryUseCaseRequest {
   categoryId: string;
@@ -15,9 +16,11 @@ export class FindGamePerCategoryUseCase {
   }
 
   public async execute({ categoryId }: FindGamePerCategoryUseCaseRequest) {
-    const existCategory = this.categoryRepositorie.findCategoryById(categoryId)
+    const existCategory = await this.categoryRepositorie.findCategoryById(
+      categoryId
+    );
 
-    if(existCategory === null) {
+    if (existCategory === null) {
       throw new CategoryDoesNotExists();
     }
 

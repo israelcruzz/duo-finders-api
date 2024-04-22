@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import gamesInMemoryRepositorie from "../../../repositories/games/in-memory/games-in-memory-repositorie";
-import { FindManyGamesUseCase } from '../find-many-games-use-case'
+import { FindManyGamesUseCase } from "../find-many-games-use-case";
 
 describe("Find Many Games Use Case", () => {
   beforeAll(() => {
@@ -17,16 +17,20 @@ describe("Find Many Games Use Case", () => {
           useVoiceChannel: true,
           weekDays: "test",
           yearPlaying: 2,
+          gameId: "user-test",
+          userId: "user-test",
         },
         {
-            name: "test2",
-            discord: "test2",
-            hoursEnd: 2,
-            hoursStart: 3,
-            useVoiceChannel: true,
-            weekDays: "test",
-            yearPlaying: 6,
-          },
+          name: "test2",
+          discord: "test2",
+          hoursEnd: 2,
+          hoursStart: 3,
+          useVoiceChannel: true,
+          weekDays: "test",
+          yearPlaying: 6,
+          gameId: "user-test",
+          userId: "user-test",
+        },
       ],
     });
   });
@@ -36,21 +40,17 @@ describe("Find Many Games Use Case", () => {
   });
 
   it("should be able to listing games", async () => {
-    const findManyGames = new FindManyGamesUseCase(
-        gamesInMemoryRepositorie
-    );
+    const findManyGames = new FindManyGamesUseCase(gamesInMemoryRepositorie);
 
-    const categories = await findManyGames.execute({ page: 1, query: 't' });
+    const categories = await findManyGames.execute({ page: 1, query: "t" });
 
     expect(categories).toHaveLength(1);
   });
 
   it("should not be able to listing games", async () => {
-    const findManyGames = new FindManyGamesUseCase(
-        gamesInMemoryRepositorie
-    );
+    const findManyGames = new FindManyGamesUseCase(gamesInMemoryRepositorie);
 
-    const categories = await findManyGames.execute({ page: 1, query: 'o' });
+    const categories = await findManyGames.execute({ page: 1, query: "o" });
 
     expect(categories).toHaveLength(0);
   });

@@ -17,6 +17,8 @@ describe("Find Many Most Games Use Case", () => {
           useVoiceChannel: true,
           weekDays: "test",
           yearPlaying: 2,
+          gameId: "user-test",
+          userId: "user-test",
         },
         {
             name: "test2",
@@ -26,6 +28,8 @@ describe("Find Many Most Games Use Case", () => {
             useVoiceChannel: true,
             weekDays: "test",
             yearPlaying: 6,
+            gameId: "user-test",
+          userId: "user-test",
           },
       ],
     });
