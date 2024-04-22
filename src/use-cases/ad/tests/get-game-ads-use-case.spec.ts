@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import adInMemoryRepositorie from "../../../repositories/ad/in-memory/ad-in-memory-repositorie";
 import { GetGameAdsUseCase } from "../get-game-ads-use-case";
 
