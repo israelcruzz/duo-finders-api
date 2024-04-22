@@ -8,6 +8,18 @@ class CategoryInMemoryRepositorie implements CategoryRepositoryInterface {
 
     return categories;
   }
+
+  public async findCategoryById(categoryId: string): Promise<ICategory | null> {
+    const category = this.categories.find(
+      (category) => category.id === categoryId
+    );
+
+    if (category === undefined) {
+      return null;
+    }
+
+    return category;
+  }
 }
 
 export default new CategoryInMemoryRepositorie();

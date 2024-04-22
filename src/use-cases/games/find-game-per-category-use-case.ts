@@ -18,7 +18,7 @@ export class FindGamePerCategoryUseCase {
     const existCategory = this.categoryRepositorie.findCategoryById(categoryId)
 
     if(existCategory === null) {
-      throw new Error
+      throw new CategoryDoesNotExists();
     }
 
     const gameRepository = this.gameRepositorie;

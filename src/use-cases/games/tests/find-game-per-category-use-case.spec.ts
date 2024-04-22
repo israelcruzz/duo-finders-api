@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import gamesInMemoryRepositorie from "../../../repositories/games/in-memory/games-in-memory-repositorie";
 import { FindGamePerCategoryUseCase } from "../find-game-per-category-use-case";
+import categoryInMemoryRepositorie from "../../../repositories/category/in-memory/category-in-memory-repositorie";
 
 describe("Find Many Most Games Use Case", () => {
   beforeAll(() => {
@@ -38,7 +39,7 @@ describe("Find Many Most Games Use Case", () => {
 
   it("should be able to listing games for one category", async () => {
     const findGamePerCategory = new FindGamePerCategoryUseCase(
-        gamesInMemoryRepositorie
+        gamesInMemoryRepositorie, categoryInMemoryRepositorie
     );
 
     const games = await findGamePerCategory.execute({ categoryId: 'test' });
