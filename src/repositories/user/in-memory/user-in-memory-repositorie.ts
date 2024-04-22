@@ -20,6 +20,16 @@ class UserInMemoryRepositorie implements UserRepositoryInterface {
 
     return createUser;
   }
+
+  public async findUserById(userId: string): Promise<IUser | null> {
+    const user = this.users.find((user) => user.id === userId);
+
+    if (user === undefined) {
+      return null;
+    }
+
+    return user;
+  }
 }
 
 export default new UserInMemoryRepositorie();

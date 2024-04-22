@@ -1,6 +1,6 @@
 import { CategoryRepositoryInterface } from "../../repositories/category/category-repository-interface";
 import { GamesRepositoryInterface } from "../../repositories/games/games-repository-interface";
-import { CategoryDoesNotExists } from "../../http/err/category-does-not-exists";
+import { CategoryDoesNotExists } from "../../http/err/category-does-not-exists-error";
 
 interface FindGamePerCategoryUseCaseRequest {
   categoryId: string;

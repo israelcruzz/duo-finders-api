@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import gamesInMemoryRepositorie from "../../../repositories/games/in-memory/games-in-memory-repositorie";
 import { FindGamePerCategoryUseCase } from "../find-game-per-category-use-case";
 import categoryInMemoryRepositorie from "../../../repositories/category/in-memory/category-in-memory-repositorie";
-import { CategoryDoesNotExists } from "../../../http/err/category-does-not-exists";
+import { CategoryDoesNotExists } from "../../../http/err/category-does-not-exists-error";
 
 describe("Find Many Most Games Use Case", () => {
   beforeAll(() => {
