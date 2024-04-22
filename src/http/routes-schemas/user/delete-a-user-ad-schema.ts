@@ -5,7 +5,7 @@ export const deleteAUserAdSchema = {
     summary: "Delete a user ad",
     tags: ["user"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     params: z.object({
       adId: z.string().uuid(),

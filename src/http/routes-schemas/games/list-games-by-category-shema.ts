@@ -5,7 +5,7 @@ export const listGamesByCategogySchema = {
     summary: "List games by category",
     tags: ["games"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     params: z.object({
       categoryId: z.string().uuid(),

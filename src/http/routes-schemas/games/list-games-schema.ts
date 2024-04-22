@@ -5,7 +5,7 @@ export const listGamesSchema = {
       summary: "List Games",
       tags: ["games"],
       headers: z.object({
-        Authorization: z.string().uuid()
+        authorization: z.string()
       }),
       querystring: z.object({
         query: z.coerce.string(),

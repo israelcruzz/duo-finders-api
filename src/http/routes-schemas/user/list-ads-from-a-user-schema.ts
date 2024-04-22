@@ -5,10 +5,10 @@ export const listAdsFromAUserSchema = {
     summary: "List ads from a user",
     tags: ["user"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     response: {
-      201: z.array(
+      200: z.array(
         z.object({
           id: z.string().uuid(),
           name: z.string(),

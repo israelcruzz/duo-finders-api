@@ -5,7 +5,7 @@ export const listAdsRecentsSchema = {
     summary: "List ads recents",
     tags: ["ad"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     params: z.object({
       date: z.date(),

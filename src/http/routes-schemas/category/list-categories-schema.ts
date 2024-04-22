@@ -5,7 +5,7 @@ export const listCategorySchema = {
     summary: "List categories",
     tags: ["category"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     response: {
       201: z.array(

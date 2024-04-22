@@ -5,7 +5,7 @@ export const createAdSchema = {
     summary: "Create Ad",
     tags: ["ad"],
     headers: z.object({
-      Authorization: z.string().uuid()
+      authorization: z.string()
     }),
     body: z.object({
       id: z.string().uuid(),
