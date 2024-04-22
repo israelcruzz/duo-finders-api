@@ -4,6 +4,9 @@ export const listAdsRecentsSchema = {
   schema: {
     summary: "List ads recents",
     tags: ["ad"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     params: z.object({
       date: z.date(),
     }),

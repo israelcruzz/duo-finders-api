@@ -4,6 +4,9 @@ export const listAdsForAGameSchema = {
   schema: {
     summary: "List ads for a game",
     tags: ["ad"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     params: z.object({
       gameId: z.string().uuid(),
     }),

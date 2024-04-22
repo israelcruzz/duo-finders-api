@@ -4,6 +4,9 @@ export const listAdsFromAUserSchema = {
   schema: {
     summary: "List ads from a user",
     tags: ["user"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     response: {
       201: z.array(
         z.object({

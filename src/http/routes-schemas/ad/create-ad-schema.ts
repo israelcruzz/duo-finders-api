@@ -4,6 +4,9 @@ export const createAdSchema = {
   schema: {
     summary: "Create Ad",
     tags: ["ad"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     body: z.object({
       id: z.string().uuid(),
       name: z.string(),

@@ -4,6 +4,9 @@ export const listFamousGamesSchema = {
   schema: {
     summary: "List Famous Games",
     tags: ["games"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     response: {
       201: z.array(
         z.object({

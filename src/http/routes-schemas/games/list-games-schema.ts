@@ -4,6 +4,9 @@ export const listGamesSchema = {
     schema: {
       summary: "List Games",
       tags: ["games"],
+      headers: z.object({
+        Authorization: z.string().uuid()
+      }),
       querystring: z.object({
         query: z.coerce.string(),
         page: z.coerce.number().default(1),

@@ -4,6 +4,9 @@ export const getDiscordFromAnAdSchema = {
   schema: {
     summary: "Get discord from an ad",
     tags: ["ad"],
+    headers: z.object({
+      Authorization: z.string().uuid()
+    }),
     params: z.object({
       adId: z.string().uuid(),
     }),
