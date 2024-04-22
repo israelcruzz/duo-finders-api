@@ -1,3 +1,4 @@
+import { AdNotFound } from "../../http/err/ad-not-found";
 import { AdRepositoryInterface } from "../../repositories/ad/ad-repository-interface";
 
 interface DeleteUserAdUseCaseRequest {
@@ -10,7 +11,13 @@ export class DeleteUserAdUseCase {
   }
 
   public async execute({ adId }: DeleteUserAdUseCaseRequest) {
-    const discordName = await this.adRepositorie.deleteUserAd(adId);
+    const existAd = await this.adRepositorie.findAdById(adId);
+
+    if (existAd === null) {
+      throw new AdNotFound();
+    }
+
+    await this.adRepositorie.deleteUserAd(adId);
 
     return {
       message: "Success!",

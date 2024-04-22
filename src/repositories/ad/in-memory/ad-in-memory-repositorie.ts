@@ -87,6 +87,21 @@ class AdInMemoryRepository implements AdRepositoryInterface {
 
     return ad;
   }
+
+  public async findExistAdInGame(
+    userId: string,
+    gameId: string
+  ): Promise<IAd | null> {
+    const ad = this.ads.find(
+      (ad) => ad.userId === userId && ad.gameId === gameId
+    );
+
+    if (ad === undefined) {
+      return null;
+    }
+
+    return ad;
+  }
 }
 
 export default new AdInMemoryRepository();

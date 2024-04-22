@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import adInMemoryRepositorie from "../../../repositories/ad/in-memory/ad-in-memory-repositorie";
 import { DeleteUserAdUseCase } from "../delete-user-ad-use-case";
+import { AdNotFound } from "../../../http/err/ad-not-found";
 
 describe("Delete User Ad Use Case", () => {
   beforeAll(() => {
@@ -34,8 +35,8 @@ describe("Delete User Ad Use Case", () => {
   it("should not be able to delete ad", async () => {
     const deleteAd = new DeleteUserAdUseCase(adInMemoryRepositorie);
 
-    const response = await deleteAd.execute({ adId: "not-ad-test" });
-
-    expect(response).toBeUndefined
+    await expect(() =>
+      deleteAd.execute({ adId: "not-ad-test" })
+    ).rejects.toBeInstanceOf(AdNotFound);
   });
 });

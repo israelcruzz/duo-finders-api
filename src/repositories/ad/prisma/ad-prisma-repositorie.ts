@@ -107,6 +107,17 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
 
     return ad;
   }
+
+  public async findExistAdInGame(userId: string, gameId: string): Promise<IAd | null> {
+    const ad = await prisma.ad.findFirst({
+      where: {
+        gameId,
+        userId
+      }
+    })
+
+    return ad
+  }
 }
 
 export default new AdPrismaRepositorie();

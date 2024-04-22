@@ -16,4 +16,5 @@ export interface AdRepositoryInterface {
   findManyUserAds(userId: string): Promise<IAd[]>;
   deleteUserAd(adId: string): Promise<void>;
   findAdById(adId: string): Promise<IAd | null>;
+  findExistAdInGame(userId: string, gameId: string): Promise<IAd | null>
 }
