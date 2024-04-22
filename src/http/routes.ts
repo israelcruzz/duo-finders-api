@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { string, z } from "zod";
 import { CategoryController } from "./controllers/category/category-controller";
 import { ListGamesCategoryController } from "./controllers/games/list-games-category-controller";
 import { ListGamesMostAdsController } from "./controllers/games/list-games-most-ads-controller";

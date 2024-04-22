@@ -13,6 +13,13 @@ export const createUserWithDataComingFromDiscordSchema = {
     response: {
       201: z.object({
         token: z.string(),
+        user: z.object({
+          id: z.string(),
+          name: z.string(),
+          avatar: z.string(),
+          banner: z.string(),
+          discord: z.string()
+        })
       }),
       404: z.object({
         message: z.string(),

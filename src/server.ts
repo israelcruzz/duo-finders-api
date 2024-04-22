@@ -9,8 +9,13 @@ import {
 } from "fastify-type-provider-zod";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
+import fastifyJwt from "@fastify/jwt";
 
 export const app = fastify();
+
+app.register(fastifyJwt, {
+  secret: env.NODE_SECRET_KEY_JWT
+})
 
 app.register(fastifySwagger, {
   swagger: {
