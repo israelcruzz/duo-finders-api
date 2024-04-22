@@ -1,7 +1,7 @@
 import { GamesRepositoryInterface } from "../../repositories/games/games-repository-interface";
 
 interface FindManyGamesUseCaseRequest {
-  query: string;
+  query: string | undefined;
   page: number;
 }
 
