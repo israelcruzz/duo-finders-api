@@ -18,6 +18,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/auth",
     {
       schema: {
+        summary: "Create user with data coming from discord",
+        tags: ["user"],
         body: z.object({
           name: z.string(),
           avatar: z.string(),
@@ -41,6 +43,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/user/ads",
     {
       schema: {
+        summary: "List ads from a user",
+        tags: ["user"],
         response: {
           201: z.array(
             z.object({
@@ -68,9 +72,11 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/user/delete/:adId",
     {
       schema: {
-        params: {
+        summary: "Delete a user ad",
+        tags: ["user"],
+        params: z.object({
           adId: z.string().uuid(),
-        },
+        }),
         response: {
           201: z.object({
             message: z.string(),
@@ -88,6 +94,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/ad",
     {
       schema: {
+        summary: "Create Ad",
+        tags: ["ad"],
         body: z.object({
           id: z.string().uuid(),
           name: z.string(),
@@ -116,6 +124,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/ads/:gameId",
     {
       schema: {
+        summary: "List ads for a game",
+        tags: ["ad"],
         params: z.object({
           gameId: z.string().uuid(),
         }),
@@ -146,12 +156,14 @@ export default async function AppRoutes(app: FastifyInstance) {
   );
 
   app.withTypeProvider<ZodTypeProvider>().get(
-    "/ad/recents",
+    "/ad/recents/:data",
     {
       schema: {
-        body: {
+        summary: "List ads recents",
+        tags: ["ad"],
+        params: z.object({
           date: z.date(),
-        },
+        }),
         response: {
           201: z.array(
             z.object({
@@ -186,6 +198,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/discord/:adId",
     {
       schema: {
+        summary: "Get discord from an ad",
+        tags: ["ad"],
         params: z.object({
           adId: string().uuid(),
         }),
@@ -206,6 +220,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/games",
     {
       schema: {
+        summary: "List Games",
+        tags: ["games"],
         querystring: z.object({
           query: z.coerce.string(),
           page: z.coerce.number().default(1),
@@ -233,6 +249,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/famous/game",
     {
       schema: {
+        summary: "List Famous Games",
+        tags: ["games"],
         response: {
           201: z.array(
             z.object({
@@ -255,6 +273,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/game/:categoryId",
     {
       schema: {
+        summary: "List games by category",
+        tags: ["games"],
         params: z.object({
           categoryId: z.string().uuid(),
         }),
@@ -280,6 +300,8 @@ export default async function AppRoutes(app: FastifyInstance) {
     "/category",
     {
       schema: {
+        summary: "List categories",
+        tags: ["category"],
         response: {
           201: z.array(
             z.object({

@@ -12,7 +12,6 @@ export async function CategoryController(
 
   try {
     const categories = await findManyCategories.execute();
-
     reply.code(201).send(categories);
   } catch (error) {
     reply.code(404).send({ message: "Internal Server Error" });
