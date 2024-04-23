@@ -30,6 +30,16 @@ class UserInMemoryRepositorie implements UserRepositoryInterface {
 
     return user;
   }
+
+  public async findUserByDiscordId(discordId: string): Promise<IUser | null> {
+    const user = this.users.find((user) => user.discord === discordId);
+
+    if (user === undefined) {
+      return null;
+    }
+
+    return user;
+  }
 }
 
 export default new UserInMemoryRepositorie();

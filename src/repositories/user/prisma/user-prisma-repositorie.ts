@@ -29,6 +29,16 @@ class UserPrismaRepositorie implements UserRepositoryInterface {
 
     return user;
   }
+
+  public async findUserByDiscordId(discordId: string): Promise<IUser | null> {
+    const user = await prisma.user.findFirst({
+      where: {
+        discord: discordId
+      }
+    })
+
+    return user
+  }
 }
 
 export default new UserPrismaRepositorie();

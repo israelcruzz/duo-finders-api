@@ -11,4 +11,4 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3333/user/ads
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MWYzN2E1OS0yMmRhLTRiODAtYjc2Mi04ODZiMDMyNTA2YmUiLCJpYXQiOjE3MTM4MTEwMjl9.l8-3Dh7GMEWb6ptokRuVfKC8-a4S64LOth6fXOmIDhc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiI1MWYzN2E1OS0yMmRhLTRiODAtYjc2Mi04ODZiMDMyNTA2YmUiLCJpYXQiOjE3MTM4MTwMjl9.l8-3Dh7GMEWb6ptokRuVfKC8-a4S64LOth6fXOmIDhc

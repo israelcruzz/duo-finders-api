@@ -18,6 +18,12 @@ export class CreateUserUseCase {
     banner,
     discord,
   }: CreateUserUseCaseRequest) {
+    const existingUser = await this.userRepository.findUserByDiscordId(discord);
+
+    if (existingUser !== null) {
+      return existingUser;
+    }
+
     const createdUser = await this.userRepository.createUser({
       name,
       avatar,
