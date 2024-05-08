@@ -31,14 +31,6 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
     return ad;
   }
 
-  public async asyncdeleteUserAd(adId: string): Promise<void> {
-    await prisma.ad.delete({
-      where: {
-        id: adId,
-      },
-    });
-  }
-
   public async findManyGameAds(gameId: string, page: number): Promise<IAd[]> {
     const games = await prisma.ad.findMany({
       where: {
