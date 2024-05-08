@@ -1,8 +1,11 @@
 import { Ad, Category, Game, User } from "@prisma/client";
-import { prisma } from "../src/lib/prisma";
+import { prisma } from "../../src/lib/prisma";
 import { randomUUID } from "crypto";
 
 async function main() {
+  prisma.$executeRaw``
+  
+
   try {
     const user: User = await prisma.user.create({
       data: {
@@ -222,9 +225,7 @@ async function main() {
         "Busco Players Sem Call para Jogar",
       ];
 
-      const randomIndexNumber = Math.floor(
-        Math.random() * namesArray.length - 1
-      );
+      const randomIndexNumber = Math.floor(Math.random() * namesArray.length);
 
       return namesArray[randomIndexNumber];
     };
@@ -240,9 +241,7 @@ async function main() {
         fpsGames,
       ];
 
-      const randomIndexNumber = Math.floor(
-        Math.random() * arrayGames.length - 1
-      );
+      const randomIndexNumber = Math.floor(Math.random() * arrayGames.length);
 
       const randomGame = arrayGames[randomIndexNumber];
 
@@ -784,4 +783,6 @@ async function main() {
 main()
   .then()
   .catch((err) => console.log(err))
-  .finally(() => console.log(`Seed Was Created`));
+  .finally(() => {
+    console.log(`Seed Was Created`);
+  });
