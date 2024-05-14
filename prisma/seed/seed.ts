@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 
 async function main() {
   prisma.$executeRaw``
-  
+
 
   try {
     const user: User = await prisma.user.create({

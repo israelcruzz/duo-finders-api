@@ -36,6 +36,7 @@ export async function AuthController(
       {
         sign: {
           sub: user.id,
+          expiresIn: '30d'
         },
       }
     );

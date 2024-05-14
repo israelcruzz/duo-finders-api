@@ -16,7 +16,7 @@ export async function ListGamesController(
     await request.jwtVerify();
 
     const { query, page } = request.query;
-    
+
     const listGamesUseCase = new FindManyGamesUseCase(gamesPrismaRepositorie);
 
     const listingGames = await listGamesUseCase.execute({ query, page });
