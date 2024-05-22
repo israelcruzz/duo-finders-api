@@ -11,8 +11,6 @@ export class FindManyGamesUseCase {
   }
 
   public async execute({ query, page }: FindManyGamesUseCaseRequest) {
-    console.log(query);
-
     const games = await this.gameRepositorie.findManyGames(query, page);
 
     return games;

@@ -22,71 +22,59 @@ import { createAdSchema } from "./routes-schemas/ad/create-ad-schema";
 import { deleteAUserAdSchema } from "./routes-schemas/user/delete-a-user-ad-schema";
 import { listAdsFromAUserSchema } from "./routes-schemas/user/list-ads-from-a-user-schema";
 import { createUserWithDataComingFromDiscordSchema } from "./routes-schemas/user/create-user-with-data-coming-from-discord-schema";
+import { listGameSchema } from "./routes-schemas/games/list-game-schema";
+import { ListGameController } from "./controllers/games/list-game-controller";
 
 export default async function AppRoutes(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().post(
-    "/auth",
-    createUserWithDataComingFromDiscordSchema,
-    AuthController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .post("/auth", createUserWithDataComingFromDiscordSchema, AuthController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/user/ads",
-    listAdsFromAUserSchema,
-    UserAdsController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/user/ads", listAdsFromAUserSchema, UserAdsController);
 
-  app.withTypeProvider<ZodTypeProvider>().delete(
-    "/user/delete/:adId",
-    deleteAUserAdSchema,
-    UserDeleteAdController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .delete("/user/delete/:adId", deleteAUserAdSchema, UserDeleteAdController);
 
-  app.withTypeProvider<ZodTypeProvider>().post(
-    "/ad",
-    createAdSchema,
-    CreateAdController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .post("/ad", createAdSchema, CreateAdController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/ads/:gameId",
-    listAdsForAGameSchema,
-    ListAdsGameController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/ads/:gameId", listAdsForAGameSchema, ListAdsGameController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/ad/recents",
-    listAdsRecentsSchema,
-    ListRecentAdsController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/ad/recents", listAdsRecentsSchema, ListRecentAdsController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/discord/:adId",
-    getDiscordFromAnAdSchema,
-    ShowDiscordAdController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/discord/:adId", getDiscordFromAnAdSchema, ShowDiscordAdController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/games",
-    listGamesSchema,
-    ListGamesController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/games", listGamesSchema, ListGamesController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/famous/game",
-    listFamousGamesSchema,
-    ListGamesMostAdsController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/famous/game", listFamousGamesSchema, ListGamesMostAdsController);
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/game/:categoryId",
-    listGamesByCategogySchema,
-    ListGamesCategoryController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get(
+      "/game/:categoryId",
+      listGamesByCategogySchema,
+      ListGamesCategoryController
+    );
 
-  app.withTypeProvider<ZodTypeProvider>().get(
-    "/category",
-    listCategorySchema,
-    CategoryController
-  );
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .post("/game/:gameId", listGameSchema, ListGameController);
+
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/category", listCategorySchema, CategoryController);
 }
