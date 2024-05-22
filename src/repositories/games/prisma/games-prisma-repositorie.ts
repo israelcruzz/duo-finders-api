@@ -57,7 +57,7 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
             ads: true,
           },
         },
-        category: true
+        category: true,
       },
       orderBy: {
         ads: {
@@ -73,7 +73,7 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
         image: game.image,
         description: game.description,
         countAds: game._count.ads,
-        category: game.category.name
+        category: game.category.name,
       };
     });
   }
@@ -82,6 +82,13 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
     const game = await prisma.game.findUnique({
       where: {
         id: gameId,
+      },
+      include: {
+        category: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 

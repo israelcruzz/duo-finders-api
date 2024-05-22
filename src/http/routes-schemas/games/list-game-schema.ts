@@ -17,6 +17,9 @@ export const listGameSchema = {
         image: z.string(),
         description: z.string(),
         categoryId: z.string(),
+        category: z.object({
+          name: z.string(),
+        }),
       }),
       404: z.object({
         message: z.string(),
