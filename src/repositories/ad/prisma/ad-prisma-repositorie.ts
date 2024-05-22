@@ -65,8 +65,8 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
         },
       },
       include: {
-        game: true
-      }
+        game: true,
+      },
     });
 
     return recentAds;
@@ -103,15 +103,18 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
     return ad;
   }
 
-  public async findExistAdInGame(userId: string, gameId: string): Promise<IAd | null> {
+  public async findExistAdInGame(
+    userId: string,
+    gameId: string
+  ): Promise<IAd | null> {
     const ad = await prisma.ad.findFirst({
       where: {
         gameId,
-        userId
-      }
-    })
+        userId,
+      },
+    });
 
-    return ad
+    return ad;
   }
 }
 

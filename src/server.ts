@@ -45,7 +45,7 @@ app.setErrorHandler((error, _, reply) => {
       .send({ error: "Validate Zod Error", issues: error.format() });
   }
   
-  return reply.status(500).send("Internal Server Error");
+  return reply.status(500).send({ message: "Internal Server Error", error: error});
 });
 
 app
