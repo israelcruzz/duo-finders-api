@@ -72,7 +72,7 @@ export default async function AppRoutes(app: FastifyInstance) {
 
   app
     .withTypeProvider<ZodTypeProvider>()
-    .post("/game/:gameId", listGameSchema, ListGameController);
+    .get("/game/view/:gameId", listGameSchema, ListGameController);
 
   app
     .withTypeProvider<ZodTypeProvider>()
