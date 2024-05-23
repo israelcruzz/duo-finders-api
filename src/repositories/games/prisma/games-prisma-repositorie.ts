@@ -57,7 +57,12 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
             ads: true,
           },
         },
-        category: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
       orderBy: {
         ads: {
@@ -67,13 +72,19 @@ class GamesPrismaRepositorie implements GamesRepositoryInterface {
     });
 
     return games.map((game) => {
+      let categoryName = game.category.name;
+      let categoryId = game.category.id;
+
       return {
         id: game.id,
         name: game.name,
         image: game.image,
         description: game.description,
         countAds: game._count.ads,
-        category: game.category.name,
+        category: {
+          id: categoryId,
+          name: categoryName,
+        },
       };
     });
   }

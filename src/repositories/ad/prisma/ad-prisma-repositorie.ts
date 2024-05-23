@@ -65,7 +65,20 @@ class AdPrismaRepositorie implements AdRepositoryInterface {
         },
       },
       include: {
-        game: true,
+        game: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            description: true,
+            categoryId: true,
+            category: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
 

@@ -5,7 +5,7 @@ export const listFamousGamesSchema = {
     summary: "List Famous Games",
     tags: ["games"],
     headers: z.object({
-      authorization: z.string()
+      authorization: z.string(),
     }),
     response: {
       200: z.array(
@@ -15,7 +15,10 @@ export const listFamousGamesSchema = {
           image: z.string(),
           description: z.string(),
           countAds: z.number(),
-          category: z.string()
+          category: z.object({
+            id: z.string(),
+            name: z.string(),
+          }),
         })
       ),
       404: z.object({

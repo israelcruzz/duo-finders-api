@@ -27,6 +27,9 @@ export const listAdsRecentsSchema = {
             image: z.string(),
             description: z.string(),
             categoryId: z.string(),
+            category: z.object({
+              name: z.string(),
+            }),
           }),
         })
       ),
