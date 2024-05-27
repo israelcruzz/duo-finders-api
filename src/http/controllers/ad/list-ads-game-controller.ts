@@ -23,7 +23,7 @@ export async function ListAdsGameController(
 
     const gameAdsListing = new GetGameAdsUseCase(
       adPrismaRepositorie,
-      gamesPrismaRepositorie
+      gamesPrismaRepositorie                            
     );
 
     const ads = await gameAdsListing.execute({ gameId, page });

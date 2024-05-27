@@ -10,29 +10,36 @@ import {
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyJwt from "@fastify/jwt";
+import cors from "@fastify/cors";
 
 export const app = fastify();
 
+app.register(cors, {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+});
+
 app.register(fastifyJwt, {
-  secret: env.NODE_SECRET_KEY_JWT
-})
+  secret: env.NODE_SECRET_KEY_JWT,
+});
 
 app.register(fastifySwagger, {
   swagger: {
-    consumes: ['application/json'],
-    produces: ['application/json'],
+    consumes: ["application/json"],
+    produces: ["application/json"],
     info: {
-      title: 'DuoFinders Api',
-      description: 'API specifications for the DuoFinders application backend',
-      version: '1.0.0'
-    }
+      title: "DuoFinders Api",
+      description: "API specifications for the DuoFinders application backend",
+      version: "1.0.0",
+    },
   },
-  transform: jsonSchemaTransform
-})
+  transform: jsonSchemaTransform,
+});
 
 app.register(fastifySwaggerUi, {
-  routePrefix: '/docs',
-})
+  routePrefix: "/docs",
+});
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -44,8 +51,10 @@ app.setErrorHandler((error, _, reply) => {
       .status(401)
       .send({ error: "Validate Zod Error", issues: error.format() });
   }
-  
-  return reply.status(500).send({ message: "Internal Server Error", error: error});
+
+  return reply
+    .status(500)
+    .send({ message: "Internal Server Error", error: error });
 });
 
 app
