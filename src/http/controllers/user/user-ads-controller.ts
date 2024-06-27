@@ -15,7 +15,7 @@ export async function UserAdsController(
 ) {
   try {
     const user = await request.jwtVerify() as jwtPayload
-
+    
     const userId = user.sub
 
     const listUserAds = new GetUserAdsUseCase(

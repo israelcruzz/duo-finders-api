@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "npx tsx watch src/server.ts",
-    "seed:dev": "npx tsx watch prisma/seed/seed.ts",
+    "seed:dev": "npx tsx prisma/seed/seed.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
     "build:seed": "tsup ./prisma/seed --out-dir seed",

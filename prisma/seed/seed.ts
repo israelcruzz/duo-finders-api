@@ -4,10 +4,12 @@ import { randomUUID } from "crypto";
 
 const deleteDatabaseDates = async () => {
   try {
-    await prisma.ad.deleteMany();
-    await prisma.category.deleteMany();
-    await prisma.game.deleteMany();
-    await prisma.user.deleteMany();
+    Promise.all([
+      await prisma.ad.deleteMany(),
+      await prisma.category.deleteMany(),
+      await prisma.game.deleteMany(),
+      await prisma.user.deleteMany(),
+    ]);
 
     console.log("Dates in Database Deleted");
   } catch (error) {

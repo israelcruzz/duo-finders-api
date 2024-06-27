@@ -24,11 +24,14 @@ import { listAdsFromAUserSchema } from "./routes-schemas/user/list-ads-from-a-us
 import { createUserWithDataComingFromDiscordSchema } from "./routes-schemas/user/create-user-with-data-coming-from-discord-schema";
 import { listGameSchema } from "./routes-schemas/games/list-game-schema";
 import { ListGameController } from "./controllers/games/list-game-controller";
+import { authVerify } from "./middlewares/auth-verify";
 
 export default async function AppRoutes(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .post("/auth", createUserWithDataComingFromDiscordSchema, AuthController);
+
+  app.addHook("onRequest", authVerify);
 
   app
     .withTypeProvider<ZodTypeProvider>()
