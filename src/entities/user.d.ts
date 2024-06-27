@@ -4,6 +4,6 @@ interface IUser {
     avatar: string
     banner: string
     discord: string
-    role?: "Member" | "Admin"
+    role?: "MEMBER" | "ADMIN"
     ads?: IAd[]
 }

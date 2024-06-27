@@ -31,7 +31,7 @@ export default async function AppRoutes(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .post("/auth", createUserWithDataComingFromDiscordSchema, AuthController);
 
-  app.addHook("onRequest", authVerify);
+ 
 
   app
     .withTypeProvider<ZodTypeProvider>()

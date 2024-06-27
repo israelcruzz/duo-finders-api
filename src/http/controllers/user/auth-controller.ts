@@ -43,10 +43,10 @@ export async function AuthController(
       }
     );
 
-    reply.code(201).send({ token: token, user } as AuthResponse201);
+    reply.code(201).send({ token: token, user });
   } catch (error) {
     reply
-      .code(500)
-      .send({ message: "Internal Server Error" } as AuthResponse404);
+      .code(404)
+      .send({ message: "Internal Server Error" });
   }
 }
