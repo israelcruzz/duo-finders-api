@@ -3,8 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
 }
 
 model User {
@@ -13,6 +18,7 @@ model User {
   avatar  String
   banner  String
   discord String
+  role    Role   @default(MEMBER)
   ads     Ad[]
 
   @@map("users")
