@@ -2,11 +2,23 @@ import { Ad, Category, Game, User } from "@prisma/client";
 import { prisma } from "../../src/lib/prisma";
 import { randomUUID } from "crypto";
 
-async function main() {
-  prisma.$executeRaw``
-
-
+const deleteDatabaseDates = async () => {
   try {
+    await prisma.ad.deleteMany();
+    await prisma.category.deleteMany();
+    await prisma.game.deleteMany();
+    await prisma.user.deleteMany();
+
+    console.log("Dates in Database Deleted");
+  } catch (error) {
+    console.log(`Error in Delete Database Dates: ${error}`);
+  }
+};
+
+async function main() {
+  try {
+    await deleteDatabaseDates();
+
     const user: User = await prisma.user.create({
       data: {
         id: randomUUID(),
